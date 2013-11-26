@@ -3,4 +3,4 @@
             [hessammehr.rxns.core :refer :all]))
 
 (parse-reaction "2H2 + O2 => H2O")
-
+(parse-fragment "H2")
