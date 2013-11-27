@@ -47,6 +47,20 @@
       (nth items item)
       (first(filter #(= item (:label %)) items)))))
 
+(defn dump-fragment [fragment]
+  (str (name (:element fragment)) (if (> (:count fragment) 1) (:count fragment) "")))
+
+(defn dump-chemical [chemical]
+  (->> (for [fragment (:composition chemical)]
+        (dump-fragment fragment))
+       (apply str)))
+
+(defn dump-chemical-with-coefficient [chemical]
+  (str (if (> (:coefficient chemical) 1) (:coefficient chemical) "")
+       (dump-chemical chemical)))
+
+(defn dump-reaction [rxn]
+  )
 
 (defn fragment-mass [fragment]
   (* (->> fragment :element periodic-table) (:count fragment)))
