@@ -59,8 +59,16 @@
   (str (if (> (:coefficient chemical) 1) (:coefficient chemical) "")
        (dump-chemical chemical)))
 
+(defn dump-reaction-side [side]
+  (->> side
+       (map dump-chemical-with-coefficient)
+       (interpose " + ")
+       (apply str)))
+
 (defn dump-reaction [rxn]
-  )
+  (let [reactants (dump-reaction-side (:reactants rxn))
+        products (dump-reaction-side (:products rxn))]
+    (str reactants " => " products)))
 
 (defn fragment-mass [fragment]
   (* (->> fragment :element periodic-table) (:count fragment)))
