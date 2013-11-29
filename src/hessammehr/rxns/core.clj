@@ -2,7 +2,8 @@
   (:require [clojure.string :as string]))
 
 
-(def periodic-table {:C 12 :H 1 :N 14 :O 16})
+(def periodic-table {:C 12.011 :H 1.0079 :N 14.007 :O 15.999
+                     :P 30.974 :Cl 35.453})
 
 (defn parse-fragment [fragment]
   (let [element (re-find #"^\p{Upper}\p{Lower}*" fragment)
